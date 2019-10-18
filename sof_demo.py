@@ -41,20 +41,33 @@ def count_hobbyists():
 # countHobbyists()
 
 def count_users_by_language():
-    total = 0
+    dev_type_info: {
+        'total': int,
+        'language_counter': Counter
+    } = {}
 
     def increment(c: Counter, l: OrderedDict):
-        nonlocal total
-        total += 1
+        dev_types = l['DevType'].split(';')
 
         languages = l['LanguageWorkedWith'].split(';')
 
-        c.update(languages)
+        for dev_type in dev_types:
+            dev_type_info.setdefault(dev_type, {
+                'total': 0,
+                'language_counter': Counter(),
+            })
 
-    counter = count(increment)
+            dev_type_info[dev_type]['language_counter'].update(languages)
+            dev_type_info[dev_type]['total'] += 1
 
-    for lang in counter.most_common(5):
-        print(lang[0], format(lang[1], total))
+    count(increment)
+
+    for dev_type, info in dev_type_info.items():
+        print(dev_type)
+
+        for language, value in info['language_counter'].most_common(5):
+            total = info['total']
+            print(f'\t{language}: {format(value, total)}%')
 
 
 count_users_by_language()
