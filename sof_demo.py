@@ -53,8 +53,8 @@ def count_users_by_language():
 
     counter = count(increment)
 
-    print(counter.most_common(5))
-    print(total)
+    for lang in counter.most_common(5):
+        print(lang[0], format(lang[1], total))
 
 
 count_users_by_language()
