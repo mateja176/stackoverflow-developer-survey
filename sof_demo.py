@@ -41,7 +41,12 @@ def count_hobbyists():
 # countHobbyists()
 
 def count_users_by_language():
+    total = 0
+
     def increment(c: Counter, l: OrderedDict):
+        nonlocal total
+        total += 1
+
         languages = l['LanguageWorkedWith'].split(';')
 
         c.update(languages)
@@ -49,6 +54,7 @@ def count_users_by_language():
     counter = count(increment)
 
     print(counter.most_common(5))
+    print(total)
 
 
 count_users_by_language()
