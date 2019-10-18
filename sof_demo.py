@@ -1,5 +1,6 @@
 import csv
-from collections import Counter
+from collections import Counter, OrderedDict
+from typing import Callable
 
 filePath = 'data/survey_results_public.csv'
 
@@ -8,20 +9,23 @@ def format(n: int, total: int):
     return round(n / total * 100, 2)
 
 
-def count():
+def count(callback: Callable[[Counter, OrderedDict], Counter]):
     counter = Counter()
 
     with open(filePath) as f:
         csv_reader = csv.DictReader(f)
 
         for line in csv_reader:
-            counter[line['Hobbyist']] += 1
+            callback(counter, line)
 
     return counter
 
 
 def countHobbyists():
-    counter = count()
+    def increment(c: Counter, l: OrderedDict):
+        c[l['Hobbyist']] += 1
+
+    counter = count(increment)
 
     total = counter['Yes'] + counter['No']
 
