@@ -44,8 +44,7 @@ def countUsersByLanguage():
     def increment(c: Counter, l: OrderedDict):
         languages = l['LanguageWorkedWith'].split(';')
 
-        for language in languages:
-            c[language] += 1
+        c.update(languages)
 
     counter = count(increment)
 
