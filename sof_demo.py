@@ -22,6 +22,8 @@ def count(callback: Callable[[Counter, OrderedDict], Counter]):
 
 
 def countHobbyists():
+    # ? declare function of type
+    # def increment: Callable[[Counter, OrderedDict], Counter](c, l):
     def increment(c: Counter, l: OrderedDict):
         c[l['Hobbyist']] += 1
 
