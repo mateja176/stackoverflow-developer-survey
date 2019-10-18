@@ -21,7 +21,7 @@ def count(callback: Callable[[Counter, OrderedDict], Counter]):
     return counter
 
 
-def countHobbyists():
+def count_hobbyists():
     # ? declare function of type
     # def increment: Callable[[Counter, OrderedDict], Counter](c, l):
     def increment(c: Counter, l: OrderedDict):
@@ -40,7 +40,7 @@ def countHobbyists():
 
 # countHobbyists()
 
-def countUsersByLanguage():
+def count_users_by_language():
     def increment(c: Counter, l: OrderedDict):
         languages = l['LanguageWorkedWith'].split(';')
 
@@ -51,4 +51,4 @@ def countUsersByLanguage():
     print(counter.most_common(5))
 
 
-countUsersByLanguage()
+count_users_by_language()
