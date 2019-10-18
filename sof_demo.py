@@ -9,13 +9,19 @@ def format(n: int, total: int):
 
 
 def count(path: str):
+    counter = Counter()
+
     with open(path) as f:
         csv_reader = csv.DictReader(f)
 
-        counter = Counter()
-
         for line in csv_reader:
             counter[line['Hobbyist']] += 1
+
+    return counter
+
+
+def countHobbyists():
+    counter = count(filePath)
 
     total = counter['Yes'] + counter['No']
 
@@ -26,4 +32,4 @@ def count(path: str):
     print(no_pct)
 
 
-count(filePath)
+countHobbyists()
