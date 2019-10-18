@@ -8,10 +8,10 @@ def format(n: int, total: int):
     return round(n / total * 100, 2)
 
 
-def count(path: str):
+def count():
     counter = Counter()
 
-    with open(path) as f:
+    with open(filePath) as f:
         csv_reader = csv.DictReader(f)
 
         for line in csv_reader:
@@ -21,7 +21,7 @@ def count(path: str):
 
 
 def countHobbyists():
-    counter = count(filePath)
+    counter = count()
 
     total = counter['Yes'] + counter['No']
 
